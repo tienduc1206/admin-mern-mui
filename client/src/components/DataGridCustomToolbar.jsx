@@ -10,15 +10,16 @@ import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import debounce from "lodash/debounce";
 
-const DataGridCustomToolbar = ({ search, setSearch }) => {
+const DataGridCustomToolbar = ({ searchInput, setSearchInput, setSearch }) => {
   const handleChangeSearchInput = (e) => {
-    setSearch(e.target.value);
+    setSearchInput(e.target.value);
+    delayedSearch(searchInput);
   };
 
-  //   const delayedSearch = useCallback(
-  //     debounce((q) => setSearch(q), 600),
-  //     []
-  //   );
+  const delayedSearch = useCallback(
+    debounce((q) => setSearch(q), 600),
+    []
+  );
 
   return (
     <GridToolbarContainer>
@@ -35,11 +36,11 @@ const DataGridCustomToolbar = ({ search, setSearch }) => {
             width: "15rem",
           }}
           onChange={(e) => handleChangeSearchInput(e)}
-          value={search}
+          value={searchInput}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton onClick={() => setSearch(search)}>
+                <IconButton onClick={() => setSearch(searchInput)}>
                   <Search />
                 </IconButton>
               </InputAdornment>

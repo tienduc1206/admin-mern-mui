@@ -84,7 +84,7 @@ const Transactions = () => {
           sortingMode="server"
           components={{ Toolbar: DataGridCustomToolbar }}
           componentsProps={{
-            toolbar: { search, setSearch },
+            toolbar: { searchInput, setSearchInput, setSearch },
           }}
         />
       </Box>
